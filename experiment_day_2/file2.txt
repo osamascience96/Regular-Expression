@@ -1,0 +1,3 @@
+I wish i could serialize my private streaming data so that i dont have to open the incognitio settings...
+However Java provides the feature of serialize to which i dont know the shit about.. 
+But at least i could serialise my life.
