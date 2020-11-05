@@ -1,6 +1,11 @@
 # Start Configuration
 RewriteEngine On
 
+#Allow not to access the folder files and directories 
+Options -Indexes
+#Allow to access the folder files and directories
+Options +Indexes
+
 # mention the url base, from where the url is re-written
 RewriteBase /OTTOMANEMPIRE/
 
@@ -16,3 +21,24 @@ RewriteCond %{REQUEST_FILENAME} !-l
 # rewrite rule that anything written after the base url, goes to the index page and that string which is appended as per its length.
 RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
 
+# Structure of RewriteRule is following:
+RewriteRule regex substitution [flag]
+
+#lets prefer a case, where you want to access the some folder from the root director, then you may want to follow the following code:
+
+#let the default url is /mvcfuckingframework/
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    
+    #Append the public string with the default url as per rule
+	#so it would substitute the public/ at the preprocessing time to the empty string, and there even if we put the regex like ^(.+)$ there is only one slash to replace and that will be appended before the new string to the url by default. 
+    RewriteRule ^$ public/ [L]
+	# and then it replaces the public/ string to the string defined below at the substitution level.
+    # Replace/Substitute the String with the defult string appended before at preprocessing time of the server, when the url is dialed.
+    RewriteRule ^(.*)$ public/$1 [L]
+    
+</IfModule>
