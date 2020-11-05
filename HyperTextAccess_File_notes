@@ -1,0 +1,18 @@
+# Start Configuration
+RewriteEngine On
+
+# mention the url base, from where the url is re-written
+RewriteBase /OTTOMANEMPIRE/
+
+# condition that if the directory after the base url mentioned exists then go to that directory, if not the rewrite url
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# condition that if the file after the base url mentioned exists then go to that file, if not the rewrite url
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# condition that if the link after the base url mentioned exists then go to that link, if not the rewrite url
+RewriteCond %{REQUEST_FILENAME} !-l
+
+# rewrite rule that anything written after the base url, goes to the index page and that string which is appended as per its length.
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+
